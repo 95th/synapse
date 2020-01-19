@@ -68,7 +68,7 @@ mod tracker;
 mod util;
 
 // We need to do this for the log macros
-use log::LogLevel;
+use crate::log::LogLevel;
 use std::process;
 use std::sync::atomic;
 

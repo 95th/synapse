@@ -6,9 +6,9 @@ use amy;
 use nix::sys::signal;
 use nix::{self, fcntl, libc, unistd};
 
-use control::acio;
-use {args, control, disk, listener, log, rpc, throttle, tracker};
-use {CONFIG, SHUTDOWN, THROT_TOKS};
+use crate::control::acio;
+use crate::{args, control, disk, listener, log, rpc, throttle, tracker};
+use crate::{CONFIG, SHUTDOWN, THROT_TOKS};
 
 static mut PIPE: (RawFd, RawFd) = (-1, -1);
 

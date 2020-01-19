@@ -5,10 +5,10 @@ use std::io::Read;
 use std::mem;
 use std::path::Path;
 
+use crate::rpc_lib;
 use amy;
 use bincode;
 use chrono::{DateTime, Duration, Utc};
-use rpc_lib;
 use serde_json as json;
 use url::Url;
 
@@ -16,10 +16,10 @@ use super::proto::criterion::{self, Criterion, Operation};
 use super::proto::message::{CMessage, Error, SMessage};
 use super::proto::resource::{merge_json, Resource, ResourceKind, SResourceUpdate};
 use super::{CtlMessage, Message};
-use disk;
-use torrent::info::Info;
-use util::{random_string, FHashMap, FHashSet, MHashSet, SHashMap};
-use CONFIG;
+use crate::disk;
+use crate::torrent::info::Info;
+use crate::util::{random_string, FHashMap, FHashSet, MHashSet, SHashMap};
+use crate::CONFIG;
 
 const USER_DATA_FILE: &str = "rpc_user_data";
 type RpcDiskFmt = SHashMap<Vec<u8>>;

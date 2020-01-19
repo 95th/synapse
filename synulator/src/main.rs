@@ -4,7 +4,7 @@ extern crate synapse_rpc as rpc;
 extern crate ws;
 
 use std::time::Instant;
-use rpc::message::CMessage;
+use crate::rpc::message::CMessage;
 
 mod state;
 

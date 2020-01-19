@@ -1,8 +1,8 @@
 use std::time::{Duration, Instant};
 
-use control::cio;
-use torrent::Peer;
-use util::{random_sample, FHashSet, UHashMap};
+use crate::control::cio;
+use crate::torrent::Peer;
+use crate::util::{random_sample, FHashSet, UHashMap};
 
 pub struct Choker {
     unchoked: Vec<usize>,
@@ -86,12 +86,10 @@ impl Choker {
         }
         let (slowest, _) = self.unchoked.iter().enumerate().fold(
             (0, ::std::u32::MAX),
-            |(slowest, min), (idx, id)| {
-                match peers.get_mut(id).map(Peer::flush) {
-                    Some((ul, _)) if ul < min => (idx, ul),
-                    _ => (slowest, min),
-                }
-            }
+            |(slowest, min), (idx, id)| match peers.get_mut(id).map(Peer::flush) {
+                Some((ul, _)) if ul < min => (idx, ul),
+                _ => (slowest, min),
+            },
         );
         self.swap_peer(slowest, peers)
     }
@@ -106,42 +104,41 @@ impl Choker {
 
         let (slowest, _) = self.unchoked.iter().enumerate().fold(
             (0, ::std::u32::MAX),
-            |(slowest, min), (idx, id)| {
-                match peers.get_mut(id).map(Peer::flush) {
-                    Some((_, dl)) if dl < min =>
-                        (idx, dl),
-                    _ =>
-                        (slowest, min),
-                }
+            |(slowest, min), (idx, id)| match peers.get_mut(id).map(Peer::flush) {
+                Some((_, dl)) if dl < min => (idx, dl),
+                _ => (slowest, min),
             },
         );
         self.swap_peer(slowest, peers)
     }
 
-    fn swap_peer<T: cio::CIO>(&mut self, idx: usize, peers: &mut UHashMap<Peer<T>>) -> Option<SwapRes> {
+    fn swap_peer<T: cio::CIO>(
+        &mut self,
+        idx: usize,
+        peers: &mut UHashMap<Peer<T>>,
+    ) -> Option<SwapRes> {
         let id = self.unchoked.remove(idx);
         {
             peers.get_mut(&id).map(Peer::choke);
         }
 
         // Unchoke one random interested peer
-        self.unchoke_random(peers)
-            .map(|unchoked| {
-                self.interested.insert(id);
-                SwapRes {
-                    choked: id,
-                    unchoked
-                }
-            })
+        self.unchoke_random(peers).map(|unchoked| {
+            self.interested.insert(id);
+            SwapRes {
+                choked: id,
+                unchoked,
+            }
+        })
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::{Choker, SwapRes};
+    use crate::torrent::{Bitfield, Peer};
+    use crate::util::UHashMap;
     use std::time::{Duration, Instant};
-    use torrent::{Bitfield, Peer};
-    use util::UHashMap;
 
     #[test]
     fn test_add_peers() {

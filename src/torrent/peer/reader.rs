@@ -3,10 +3,10 @@ use std::mem;
 
 use byteorder::{BigEndian, ByteOrder};
 
-use buffers::Buffer;
-use torrent::peer::Message;
-use torrent::Bitfield;
-use util::{aread, io_err_val, IOR};
+use crate::buffers::Buffer;
+use crate::torrent::peer::Message;
+use crate::torrent::Bitfield;
+use crate::util::{aread, io_err_val, IOR};
 
 pub struct Reader {
     blocks_read: usize,
@@ -307,8 +307,8 @@ impl State {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::torrent::peer::Message;
     use std::io::{self, Read};
-    use torrent::peer::Message;
 
     /// Cursor to emulate a mio socket using readv.
     struct Cursor<'a> {
@@ -504,7 +504,7 @@ mod tests {
 
     #[test]
     fn test_read_handshake() {
-        use PEER_ID;
+        use crate::PEER_ID;
         let mut r = Reader::new();
         let m = Message::Handshake {
             rsv: [0; 8],

@@ -11,7 +11,7 @@ use std::path::PathBuf;
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
-use bencode::BEncode;
+use crate::bencode::BEncode;
 use bincode;
 use byteorder::{BigEndian, ByteOrder};
 use chrono::{DateTime, Utc};
@@ -25,15 +25,15 @@ pub use self::peer::{Peer, PeerConn};
 pub use self::picker::Block;
 
 use self::picker::Picker;
-use buffers::Buffer;
-use control::cio;
-use rpc::resource::{self, Resource, SResourceUpdate};
-use session::torrent::current::Session;
-use throttle::Throttle;
-use tracker::{self, TrackerResponse};
-use util::{FHashSet, UHashMap};
-use {bencode, disk, rpc, util, CONFIG, EXT_PROTO, UT_META_ID, UT_PEX_ID};
-use {session, stat};
+use crate::buffers::Buffer;
+use crate::control::cio;
+use crate::rpc::resource::{self, Resource, SResourceUpdate};
+use crate::session::torrent::current::Session;
+use crate::throttle::Throttle;
+use crate::tracker::{self, TrackerResponse};
+use crate::util::{FHashSet, UHashMap};
+use crate::{bencode, disk, rpc, util, CONFIG, EXT_PROTO, UT_META_ID, UT_PEX_ID};
+use crate::{session, stat};
 
 const MAX_PEERS: usize = 50;
 

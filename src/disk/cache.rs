@@ -9,10 +9,10 @@ use std::io::{Read, Seek, SeekFrom, Write};
 #[cfg(all(feature = "mmap", target_pointer_width = "64"))]
 use memmap::MmapMut;
 
+use crate::util::{native, MHashMap};
+use crate::CONFIG;
 #[cfg(all(feature = "mmap", target_pointer_width = "64"))]
 use util::io_err;
-use util::{native, MHashMap};
-use CONFIG;
 
 const PB_LEN: usize = 256;
 

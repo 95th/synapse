@@ -3,8 +3,8 @@ use std::mem;
 
 use httparse;
 
-use tracker::errors::{ErrorKind, Result};
-use util::{aread, IOR};
+use crate::tracker::errors::{ErrorKind, Result};
+use crate::util::{aread, IOR};
 
 pub struct Reader {
     data: Vec<u8>,

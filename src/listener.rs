@@ -4,9 +4,9 @@ use std::{fmt, thread};
 
 use amy::{self, Poller, Registrar};
 
-use torrent::peer::reader::{RRes, Reader};
-use util::UHashMap;
-use {handle, CONFIG};
+use crate::torrent::peer::reader::{RRes, Reader};
+use crate::util::UHashMap;
+use crate::{handle, CONFIG};
 
 pub struct Listener {
     listener: TcpListener,

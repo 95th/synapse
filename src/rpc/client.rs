@@ -12,9 +12,9 @@ use super::reader::Reader;
 use super::writer::Writer;
 use super::{ErrorKind, Result, ResultExt};
 use super::{EMPTY_HTTP_RESP, UNAUTH_HTTP_RESP};
-use socket::TSocket;
-use util::{aread, sha1_hash, IOR};
-use {CONFIG, DL_TOKEN};
+use crate::socket::TSocket;
+use crate::util::{aread, sha1_hash, IOR};
+use crate::{CONFIG, DL_TOKEN};
 
 pub struct Client {
     pub conn: TSocket,

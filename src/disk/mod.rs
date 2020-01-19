@@ -13,8 +13,8 @@ use amy;
 
 use self::cache::{BufCache, FileCache};
 use self::job::JobRes;
-use util::UHashMap;
-use {handle, CONFIG};
+use crate::util::UHashMap;
+use crate::{handle, CONFIG};
 
 const POLL_INT_MS: usize = 1000;
 const JOB_TIME_SLICE: u64 = 150;

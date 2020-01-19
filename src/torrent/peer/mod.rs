@@ -9,16 +9,16 @@ use std::{cmp, fmt, io, mem, time};
 pub use self::message::Message;
 use self::reader::{RRes, Reader};
 use self::writer::Writer;
-use bencode;
-use control::cio;
-use rpc::{self, resource};
-use socket::Socket;
-use stat;
-use throttle::Throttle;
-use torrent::{Bitfield, Info, Torrent};
-use tracker;
-use util;
-use {CONFIG, DHT_EXT};
+use crate::bencode;
+use crate::control::cio;
+use crate::rpc::{self, resource};
+use crate::socket::Socket;
+use crate::stat;
+use crate::throttle::Throttle;
+use crate::torrent::{Bitfield, Info, Torrent};
+use crate::tracker;
+use crate::util;
+use crate::{CONFIG, DHT_EXT};
 
 error_chain! {
     errors {
@@ -198,7 +198,7 @@ impl Peer<cio::test::TCIO> {
     }
 
     pub fn test_with_tcio(mut cio: cio::test::TCIO) -> Peer<cio::test::TCIO> {
-        use control::cio::CIO;
+        use crate::control::cio::CIO;
 
         let conn = PeerConn::test();
         let id = cio.add_peer(conn).unwrap();
@@ -544,9 +544,9 @@ impl ExtIDs {
 #[cfg(test)]
 mod tests {
     use super::Peer;
-    use buffers::Buffer;
-    use control::cio::{test, CIO};
-    use torrent::Message;
+    use crate::buffers::Buffer;
+    use crate::control::cio::{test, CIO};
+    use crate::torrent::Message;
 
     #[test]
     fn test_cancel() {

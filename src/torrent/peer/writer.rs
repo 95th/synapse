@@ -2,9 +2,9 @@ use std::collections::VecDeque;
 use std::io::{self, ErrorKind, Write};
 use std::sync::Arc;
 
-use buffers::Buffer;
-use torrent::peer::Message;
-use util::io_err;
+use crate::buffers::Buffer;
+use crate::torrent::peer::Message;
+use crate::util::io_err;
 
 pub struct Writer {
     // Needed so that the peer can filter out cancel'd messages.
@@ -193,9 +193,9 @@ impl Writer {
 #[cfg(test)]
 mod tests {
     use super::Writer;
-    use buffers::Buffer;
+    use crate::buffers::Buffer;
+    use crate::torrent::peer::Message;
     use std::sync::Arc;
-    use torrent::peer::Message;
 
     #[test]
     fn test_write_keepalive() {
@@ -253,7 +253,7 @@ mod tests {
 
     #[test]
     fn test_write_bitfield() {
-        use torrent::Bitfield;
+        use crate::torrent::Bitfield;
         let mut w = Writer::new();
         let mut buf = [0u8; 9];
         let mut pf = Bitfield::new(32);
@@ -320,7 +320,7 @@ mod tests {
 
     #[test]
     fn test_write_handshake() {
-        use PEER_ID;
+        use crate::PEER_ID;
         let mut w = Writer::new();
         let m = Message::Handshake {
             rsv: [0; 8],

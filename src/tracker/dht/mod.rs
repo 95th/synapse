@@ -7,9 +7,9 @@ use std::time;
 use amy;
 use num_bigint::BigUint;
 
-use disk;
-use tracker;
-use CONFIG;
+use crate::disk;
+use crate::tracker;
+use crate::CONFIG;
 
 mod proto;
 mod rt;

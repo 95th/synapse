@@ -11,12 +11,12 @@ use url::Url;
 
 use self::reader::{ReadRes, Reader};
 use self::writer::Writer;
-use socket::TSocket;
-use tracker::{
+use crate::socket::TSocket;
+use crate::tracker::{
     self, dns, Announce, Error, ErrorKind, Response, Result, ResultExt, TrackerResponse,
 };
-use util::UHashMap;
-use {amy, bencode, PEER_ID};
+use crate::util::UHashMap;
+use crate::{amy, bencode, PEER_ID};
 
 const TIMEOUT_MS: u64 = 5_000;
 

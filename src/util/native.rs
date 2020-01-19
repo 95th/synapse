@@ -6,7 +6,7 @@ use nix::errno::Errno;
 #[cfg(all(feature = "mmap", target_pointer_width = "64"))]
 use nix::libc::c_void;
 
-use util::io::io_err;
+use crate::util::io::io_err;
 
 mod sys {
     use nix::libc::c_int;

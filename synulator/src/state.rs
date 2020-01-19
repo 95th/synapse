@@ -2,12 +2,12 @@ use std::collections::{HashMap, HashSet};
 use std::mem;
 use std::borrow::Cow;
 
-use json;
+use crate::json;
 use rand::{self, Rng};
 
-use rpc::message::{CMessage, Error, SMessage};
-use rpc::criterion::{self, Criterion, Operation};
-use rpc::resource::{self, merge_json, Resource, ResourceKind, SResourceUpdate};
+use crate::rpc::message::{CMessage, Error, SMessage};
+use crate::rpc::criterion::{self, Criterion, Operation};
+use crate::rpc::resource::{self, merge_json, Resource, ResourceKind, SResourceUpdate};
 
 const TORRENTS: usize = 1000;
 const FILES: u32 = 140;

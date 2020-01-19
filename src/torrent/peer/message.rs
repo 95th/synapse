@@ -4,9 +4,9 @@ use std::sync::Arc;
 
 use byteorder::{BigEndian, WriteBytesExt};
 
-use buffers::Buffer;
-use torrent::info::Info as TorrentInfo;
-use torrent::Bitfield;
+use crate::buffers::Buffer;
+use crate::torrent::info::Info as TorrentInfo;
+use crate::torrent::Bitfield;
 
 pub enum Message {
     // TODO: Consider moving this to the heap,
@@ -233,7 +233,7 @@ impl PartialEq for Message {
 
 impl Message {
     pub fn handshake(torrent: &TorrentInfo) -> Message {
-        use {DHT_EXT, EXT_PROTO, PEER_ID};
+        use crate::{DHT_EXT, EXT_PROTO, PEER_ID};
         let mut rsv = [0u8; 8];
         rsv[DHT_EXT.0] |= DHT_EXT.1;
         rsv[EXT_PROTO.0] |= EXT_PROTO.1;

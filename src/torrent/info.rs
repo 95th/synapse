@@ -7,9 +7,9 @@ use base32;
 use rand::{self, Rng};
 use url::Url;
 
-use bencode::BEncode;
-use disk;
-use util::{hash_to_id, id_to_hash, sha1_hash};
+use crate::bencode::BEncode;
+use crate::disk;
+use crate::util::{hash_to_id, id_to_hash, sha1_hash};
 
 #[derive(Clone)]
 pub struct Info {

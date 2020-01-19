@@ -3,7 +3,7 @@ use std::f32;
 use chrono::{DateTime, Utc};
 use regex::{self, Regex};
 
-use resource::ResourceKind;
+use crate::resource::ResourceKind;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]

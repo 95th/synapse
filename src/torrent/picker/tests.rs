@@ -1,9 +1,9 @@
 use super::{Block, Picker};
+use crate::torrent::{Bitfield, Info, Peer as TGPeer};
+use crate::{control, rand};
 use rand::distributions::{Distribution, Range};
 use std::cell::RefCell;
 use std::collections::HashMap;
-use torrent::{Bitfield, Info, Peer as TGPeer};
-use {control, rand};
 
 type TPeer = TGPeer<control::cio::test::TCIO>;
 

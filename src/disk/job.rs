@@ -11,11 +11,11 @@ use nix::sys::statvfs;
 use openssl::sha;
 
 use super::{BufCache, FileCache, JOB_TIME_SLICE};
-use buffers::Buffer;
-use socket::TSocket;
-use torrent::{Info, LocIter};
-use util::{awrite, hash_to_id, io_err, IOR};
-use CONFIG;
+use crate::buffers::Buffer;
+use crate::socket::TSocket;
+use crate::torrent::{Info, LocIter};
+use crate::util::{awrite, hash_to_id, io_err, IOR};
+use crate::CONFIG;
 
 static MP_BOUNDARY: &str = "qxyllcqgNchqyob";
 

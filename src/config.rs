@@ -5,7 +5,7 @@ use std::{fs, process};
 use shellexpand;
 use toml;
 
-use args;
+use crate::args;
 
 error_chain! {
     errors {
